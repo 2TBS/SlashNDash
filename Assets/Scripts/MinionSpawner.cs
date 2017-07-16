@@ -4,34 +4,32 @@ using UnityEngine;
 
 public class MinionSpawner : MonoBehaviour {
 
-	public Object[] cavePrefabs;
-	public List<GameObject> spawnedCaves;
-	public GameObject rock;
+	public Object[] minionPrefabs;
+	public List<GameObject> spawnedMinions;
 
 	bool spawned;
 
 	public int SPAWN_DISTANCE = 15;
 	// Use this for initialization
 	void Start () {
-		cavePrefabs = Resources.LoadAll("Caves/", typeof(GameObject));
+		minionPrefabs = Resources.LoadAll("Enemies/", typeof(GameObject));
+
+        StartCoroutine(Spawn());
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		foreach(GameObject cave in spawnedCaves) {
-			if( Mathf.Abs(rock.transform.position.y - cave.transform.position.y) >= SPAWN_DISTANCE) {
-				
-				spawnedCaves.Remove(cave);
-				Destroy(cave);
-			}
-				
-		}
 
-		if((int)rock.transform.position.y % 5 == 0) {
-			if(!spawned)
-				spawnedCaves.Add(Instantiate((GameObject)cavePrefabs[Random.Range(0, cavePrefabs.Length-1)], rock.transform.position + Vector3.up*SPAWN_DISTANCE, Quaternion.Euler(-90,0,0)));
-			Debug.Log("Create cave");
-			spawned = true;
-		} else spawned = false;
 	}
+
+    //Coroutine that runs everytime a minion is needed to be spawned
+    public IEnumerator Spawn() {
+        while(true)
+        {
+            spawnedMinions.Add(Instantiate((GameObject)minionPrefabs[Random.Range(0, minionPrefabs.Length)], new Vector2(10, Random.Range(-5, 5)), Quaternion.identity));
+            yield return new WaitForSeconds(2);
+        }
+       
+    }
 }
