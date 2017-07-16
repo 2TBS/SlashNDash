@@ -79,7 +79,7 @@ public class SwipeManager : MonoBehaviour {
                     {
                         Debug.Log("UP");
                         debugText.text = "up";
-                        CameraShake.Shake(0.25f, 0.4f);
+                        
                     }
                     else if ((180.0f - swipeAngle) < angleRange)
                     {
