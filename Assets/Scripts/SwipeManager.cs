@@ -11,16 +11,24 @@ public class SwipeManager : MonoBehaviour {
     private const float angleRange = 30;
     
     //Swipe Speed
-    private const float minVelocity = 1500.0f;
+    private const float minVelocity = 15.0f;
 
     //Minimum Distance of the swipe to be detected
-    private const float minSwipeDist = 50.0f;
+    private const float minSwipeDist = 2.0f;
 
     //Swipe specific variables
     private Vector2 swipeStartPosition;
     private float swipeStartTime;
+    private Swipe.Type type;
+
+    //Main camera for getting the swipe vector
+    [SerializeField]
+    private Camera mainCam;
 
     public Text debugText;
+
+    ///returns the current swipe registered; returns none if no swipe detected
+    public Swipe currentSwipe;
 
     // Use this for initialization
     void Start () {
@@ -32,9 +40,9 @@ public class SwipeManager : MonoBehaviour {
 
         //On the finger down check
         if (Input.GetMouseButtonDown(0))
-        {
+        {   
             //Set start position and time
-            swipeStartPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+            swipeStartPosition = mainCam.ScreenToWorldPoint(Input.mousePosition);
             swipeStartTime = Time.time;
 
         }
@@ -43,7 +51,7 @@ public class SwipeManager : MonoBehaviour {
         if (Input.GetMouseButtonUp(0))
         {
             //Vectors
-            Vector2 swipeEndPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+            Vector2 swipeEndPosition = mainCam.ScreenToWorldPoint(Input.mousePosition);;
             Vector2 swipeVector = swipeEndPosition - swipeStartPosition;
 
             //Time Difference
@@ -64,11 +72,13 @@ public class SwipeManager : MonoBehaviour {
                 {
                     Debug.Log("right");
                     debugText.text = "right";
+                    type = Swipe.Type.Right;
                 }
                 else if ((180.0f - swipeAngle) < angleRange)
                 {
                     Debug.Log("left");
                     debugText.text = "left";
+                    type = Swipe.Type.Left;
                 }
                 else
                 {
@@ -79,21 +89,25 @@ public class SwipeManager : MonoBehaviour {
                     {
                         Debug.Log("UP");
                         debugText.text = "up";
+                        type = Swipe.Type.Up;
                         
                     }
                     else if ((180.0f - swipeAngle) < angleRange)
                     {
                         Debug.Log("DOWN");
                         debugText.text = "down";
+                        type = Swipe.Type.Down;
                     }
                     else
                     {
                         Debug.Log("Not a swipe!");
                         debugText.text = "rekt";
+                        type = Swipe.Type.None;
                     }
                 }
 
-
+                ///Sets current swipe based on gathered statistics
+                currentSwipe = new Swipe(swipeStartPosition, swipeEndPosition, type);
 
             }
 

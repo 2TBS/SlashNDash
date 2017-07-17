@@ -10,7 +10,7 @@ public class MinionLayer : MonoBehaviour {
 
     const float SIZE_MULT = 1.5f;
 
-    public Minion.SwipeType swipe; //to be assigned in inspector
+    public Swipe.Type swipe; //to be assigned in inspector
 
 	// Use this for initialization
 	void Start () {

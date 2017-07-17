@@ -5,28 +5,19 @@ using UnityEngine.UI;
 
 public class Minion : MonoBehaviour {
 
-    public enum SwipeType : int
-    {
-        Left,
-        Right,
-        Up,
-        Down,
-        BottomLeftDiagonal,
-        TopLeftDiagonal,
-        Tap
-    }
-
-
+    [SerializeField]
     List<MinionLayer> layers = new List<MinionLayer>();
-
+[SerializeField]
     MinionLayer topLayer;
-
+[SerializeField]
     MinionSpawner spawner;
+[SerializeField]
+    SwipeManager swipeMan;
 
 	// Use this for initialization
 	void Start () {
         spawner = GameObject.FindObjectOfType<MinionSpawner>();
-
+        swipeMan = GameObject.FindObjectOfType<SwipeManager>();
         //Layer generation
         for(int i = 0; i < spawner.GetDifficultyRange(); i++)
             layers.Add(Instantiate((GameObject)spawner.minionPrefabs[Random.Range(0, spawner.minionPrefabs.Length)], transform.position, Quaternion.identity)
@@ -43,5 +34,17 @@ public class Minion : MonoBehaviour {
         catch {Debug.Log("No layers left");}
        
         transform.Translate(Vector2.left / 10);
+
+        Debug.Log(swipeMan.currentSwipe);
+        if(swipeMan.currentSwipe.Contains(transform.position, topLayer.transform.localScale.x) && swipeMan.currentSwipe.swipeType == topLayer.swipe) {
+            
+            layers.Remove(topLayer);
+            Destroy(topLayer);
+            Debug.Log("Good Swipe Detected");
+        }
+
+        if(transform.position.x < -20 || layers.Count == 0) 
+            Destroy(gameObject);
+           
 	}
 }
