@@ -43,9 +43,10 @@ public class Minion : MonoBehaviour {
             Debug.Log("Good Swipe Detected");
         }
 
-        if(transform.position.x < -20 || layers.Count == 0) 
+        if(transform.position.x < -15 || layers.Count == 0) {
             Destroy(gameObject);
-            StartCoroutine(GameObject.FindObjectOfType<CameraShake>().cShake(100,100));
+            CameraShake.Shake(0.2f,0.25f);
+        }
            
 	}
 }
