@@ -35,10 +35,13 @@ public class Swipe {
 		midpoint = new Vector2((startPos.x + endPos.x)/2, (startPos.y + endPos.y)/2);
 	}
 
+	public Swipe () {
+
+	}
+
 	///Returns if the Swipe has hit a Minion
 	public bool Contains (Vector2 position, float radius) {
 		if(swipeType != Type.None) {
-			Debug.Log("Swipe Midpoint " + midpoint);
 			return(!IsInCircle(position, startPosition, radius) && !IsInCircle(position, endPosition, radius) && IsInCircle(position, midpoint, radius));
 		}
 

@@ -45,6 +45,7 @@ public class Minion : MonoBehaviour {
 
         if(transform.position.x < -20 || layers.Count == 0) 
             Destroy(gameObject);
+            StartCoroutine(GameObject.FindObjectOfType<CameraShake>().cShake(100,100));
            
 	}
 }

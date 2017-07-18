@@ -30,7 +30,7 @@ public class MinionSpawner : MonoBehaviour {
     public IEnumerator Spawn() {
         while(true)
         {
-            spawnedMinions.Add(Instantiate(minionTemplate, new Vector2(10, Random.Range(-5, 5)), Quaternion.identity));
+            spawnedMinions.Add(Instantiate(minionTemplate, new Vector2(10, Random.Range(-4, 4)), Quaternion.identity));
             yield return new WaitForSeconds(2);
         }
        

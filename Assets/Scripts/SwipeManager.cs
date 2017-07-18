@@ -32,7 +32,7 @@ public class SwipeManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+		currentSwipe = new Swipe();
 	}
 	
 	// Update is called once per frame
