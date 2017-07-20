@@ -8,7 +8,7 @@ public class SwipeManager : MonoBehaviour {
     private readonly Vector2 xAxis = new Vector2(1, 0);
     private readonly Vector2 yAxis = new Vector2(0, 1);
 
-    private const float angleRange = 30;
+    private const float angleRange = 20;
     
     //Swipe Speed
     private const float minVelocity = 15.0f;
@@ -80,6 +80,12 @@ public class SwipeManager : MonoBehaviour {
                     debugText.text = "left";
                     type = Swipe.Type.Left;
                 }
+                else if ((45f - swipeAngle) < angleRange)
+                {
+                    Debug.Log("DIAG_TOP");
+                    debugText.text = "diagtop";
+                    type = Swipe.Type.BottomLeftDiagonal;
+                }
                 else
                 {
                     //Vertical Swipes!
@@ -98,6 +104,13 @@ public class SwipeManager : MonoBehaviour {
                         debugText.text = "down";
                         type = Swipe.Type.Down;
                     }
+                    else if ((45f - swipeAngle) < angleRange)
+                    {
+                        Debug.Log("DIAG_BOTTOM");
+                        debugText.text = "diagbottom";
+                        type = Swipe.Type.TopLeftDiagonal;
+                    }
+                   
                     else
                     {
                         Debug.Log("Not a swipe!");
