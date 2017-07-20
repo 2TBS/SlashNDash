@@ -36,17 +36,23 @@ public class Minion : MonoBehaviour {
         transform.Translate(Vector2.left / 10);
 
         Debug.Log(swipeMan.currentSwipe);
-        if(swipeMan.currentSwipe.Contains(transform.position, topLayer.transform.localScale.x) && swipeMan.currentSwipe.swipeType == topLayer.swipe) {
+        if(swipeMan.currentSwipe.Contains(transform.position, topLayer.transform.localScale.x)) {
+            if(swipeMan.currentSwipe.swipeType == topLayer.swipe) {
+                layers.Remove(topLayer);
+                Destroy(topLayer);
+                Debug.Log("Good Swipe Detected");
+            } else {
+                //remove health
+                CameraShake.Shake(0.2f, 0.25f);
+            }
             
-            layers.Remove(topLayer);
-            Destroy(topLayer);
-            Debug.Log("Good Swipe Detected");
         }
 
         if(transform.position.x < -15 || layers.Count == 0) {
             Destroy(gameObject);
             CameraShake.Shake(0.2f,0.25f);
         }
+        
            
 	}
 }
