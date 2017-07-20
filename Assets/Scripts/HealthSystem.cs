@@ -60,7 +60,7 @@ public class HealthSystem : MonoBehaviour {
 	// This method will also update the localscale of the healthbar so it is depleated
 	// It will also move the health bar left when damage is dealth so the health bar doesn't
 	// Look like it is closing in on itself
-	void DealDamage(float percentDamage) {
+	public void DealDamage(float percentDamage) {
 		transform.localScale -= new Vector3( originalSize * (percentDamage / 100), 0, 0); // Change scale of healthbar
 		transform.position -= new Vector3( originalSize * (percentDamage / 100) * 3.2f, 0, 0);// Change position of healthbar
 		health -= percentDamage;// Subtract health according to passed in percentDamage
@@ -70,7 +70,7 @@ public class HealthSystem : MonoBehaviour {
 	// This method will also update the localscale of the healthbar so it is increased
 	// It will also move the health bar right when health is replenished so the health bar doesn't
 	// Look like it is expanding out in two directions
-	void ReplenishHealth(float percentHealth) {
+	public void ReplenishHealth(float percentHealth) {
 		transform.localScale += new Vector3( originalSize * (percentHealth / 100), 0, 0); // Change scale of healthbar
 		transform.position += new Vector3( originalSize * (percentHealth / 100) * 3.2f, 0, 0);// Change position of healthbar
 		health += percentHealth;// Add health according to passed in percentHealth
