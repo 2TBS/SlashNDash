@@ -25,10 +25,10 @@ public class MinionLayer : MonoBehaviour {
     /// <summary>
     /// Makeshift constructor. Run after instantiation.
     /// </summary>
-    public MinionLayer Construct(int size, GameObject parent)
+    public MinionLayer Construct(float size, GameObject parent)
     {
         transform.SetParent(parent.transform);
-        transform.localScale = Vector2.one * (size+1) * SIZE_MULT;
+        transform.localScale = Vector2.one * (size) * SIZE_MULT;
 
         return this;
      
