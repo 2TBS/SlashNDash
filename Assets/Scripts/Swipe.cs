@@ -39,18 +39,19 @@ public class Swipe {
 
 	}
 
-	///Returns if the Swipe has hit a Minion
-	public bool Contains (Vector2 position, float radius) {
-		if(swipeType != Type.None) {
-			return(!IsInCircle(position, startPosition, radius) && !IsInCircle(position, endPosition, radius) && IsInCircle(position, midpoint, radius));
-		}
+	// BELOW IS DEPRECATED BUT PRESERVED FOR FUTURE REFERENCE
+	// ///Returns if the Swipe has hit a Minion
+	// public bool Contains (Vector2 position, float radius) {
+	// 	if(swipeType != Type.None) {
+	// 		return(!IsInCircle(position, startPosition, radius) && !IsInCircle(position, endPosition, radius) && IsInCircle(position, midpoint, radius));
+	// 	}
 
-		return false;
+	// 	return false;
 			
-	}
+	// }
 
-	///Returns if 'point' is located within a circle with given center and radius
-	private bool IsInCircle (Vector2 center, Vector2 point, float radius) {
-		return Mathf.Pow((center.x-point.x),2) + Mathf.Pow((center.y-point.y),2) < Mathf.Pow(radius,2);
-	}
+	// ///Returns if 'point' is located within a circle with given center and radius
+	// private bool IsInCircle (Vector2 center, Vector2 point, float radius) {
+	// 	return Mathf.Pow((center.x-point.x),2) + Mathf.Pow((center.y-point.y),2) < Mathf.Pow(radius,2);
+	// }
 }
