@@ -21,7 +21,7 @@ public class TrailObj : MonoBehaviour {
 		int i = 0;
 		while(i < SECONDS) {
 			i++;
-			yield return new WaitForSeconds(1);
+			yield return new WaitForSeconds(0.5f);
 		}
 
 		Destroy(gameObject);
