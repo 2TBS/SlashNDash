@@ -19,7 +19,7 @@ public class Minion : MonoBehaviour {
         spawner = GameObject.FindObjectOfType<MinionSpawner>();
         swipeMan = GameObject.FindObjectOfType<SwipeManager>();
         //Layer generation
-        for(int i = 0; i < spawner.GetDifficultyRange(); i++)
+        for(int i = spawner.GetDifficultyRange(); i > 0; i--)
             layers.Add(Instantiate((GameObject)spawner.minionPrefabs[Random.Range(0, spawner.minionPrefabs.Length)], transform.position, Quaternion.identity)
                 .GetComponent<MinionLayer>()
                 .Construct(i, gameObject));
@@ -36,20 +36,17 @@ public class Minion : MonoBehaviour {
         transform.Translate(Vector2.left / 10);
 
         Debug.Log(swipeMan.currentSwipe);
-        
+
         if(swipeMan.currentSwipe.swipeType == topLayer.swipe) {
             layers.Remove(topLayer);
             Destroy(topLayer);
             Debug.Log("Good Swipe Detected");
-        } else {
-            //remove health
-            CameraShake.Shake(0.2f, 0.25f);
         }
-            
-
+        
         if(transform.position.x < -15 || layers.Count == 0) {
+            //REMOVE HEALTH HERE!
             Destroy(gameObject);
-            CameraShake.Shake(0.2f,0.25f);
+            // CameraShake.Shake(0.2f,0.25f); REENABLE LATER
         }
         
            

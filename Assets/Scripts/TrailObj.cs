@@ -5,7 +5,7 @@ using UnityEngine;
 ///Attach to trail object. Makes the object disappear after set amount of seconds.
 public class TrailObj : MonoBehaviour {
 
-	const int SECONDS = 1; //Time before disappearing
+	const int MICROSECS = 20; //Time before disappearing
 
 	// Use this for initialization
 	void Start () {
@@ -19,9 +19,9 @@ public class TrailObj : MonoBehaviour {
 
 	IEnumerator wait() {
 		int i = 0;
-		while(i < SECONDS) {
+		while(i < MICROSECS) {
 			i++;
-			yield return new WaitForSeconds(0.5f);
+			yield return new WaitForSeconds(MICROSECS/100);
 		}
 
 		Destroy(gameObject);

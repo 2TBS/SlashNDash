@@ -8,7 +8,7 @@ using UnityEngine.UI;
 /// </summary>
 public class MinionLayer : MonoBehaviour {
 
-    const float SIZE_MULT = 1.5f;
+    const float SIZE_MULT = 1.2f;
 
     public Swipe.Type swipe; //to be assigned in inspector
 
