@@ -39,6 +39,6 @@ public class MinionSpawner : MonoBehaviour {
     ///Gets a random number based on the difficulty index
     public int GetDifficultyRange()
     {
-        return 3; //TODO
+		return Random.Range(1,3); //TODO
     }
 }

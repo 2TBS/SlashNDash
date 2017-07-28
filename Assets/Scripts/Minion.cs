@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Minion : MonoBehaviour {
 
-    [SerializeField]
+[SerializeField]
     List<MinionLayer> layers = new List<MinionLayer>();
 [SerializeField]
     MinionLayer topLayer;
@@ -19,11 +19,11 @@ public class Minion : MonoBehaviour {
         spawner = GameObject.FindObjectOfType<MinionSpawner>();
         swipeMan = GameObject.FindObjectOfType<SwipeManager>();
         //Layer generation
-        for(int i = spawner.GetDifficultyRange(); i > 0; i--)
-            layers.Add(Instantiate((GameObject)spawner.minionPrefabs[Random.Range(0, spawner.minionPrefabs.Length)], transform.position, Quaternion.identity)
-                .GetComponent<MinionLayer>()
-                .Construct(i, gameObject));
-
+		int difficulty = spawner.GetDifficultyRange();
+		for (int i = difficulty; i > 0; i--)
+			layers.Add (Instantiate ((GameObject)spawner.minionPrefabs [Random.Range (0, spawner.minionPrefabs.Length)], transform.position, Quaternion.identity)
+               .GetComponent<MinionLayer> ()
+               .Construct (i, gameObject, i));
     }
 	
 	// Update is called once per frame
