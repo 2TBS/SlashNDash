@@ -31,7 +31,7 @@ public class MinionSpawner : MonoBehaviour {
         while(true)
         {
             spawnedMinions.Add(Instantiate(minionTemplate, new Vector2(10, Random.Range(-4, 4)), Quaternion.identity));
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(5);
         }
        
     }
@@ -39,6 +39,6 @@ public class MinionSpawner : MonoBehaviour {
     ///Gets a random number based on the difficulty index
     public int GetDifficultyRange()
     {
-        return 3; //TODO
+		return Random.Range(1,3); //TODO
     }
 }
