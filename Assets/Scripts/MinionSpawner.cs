@@ -31,7 +31,7 @@ public class MinionSpawner : MonoBehaviour {
         while(true)
         {
             spawnedMinions.Add(Instantiate(minionTemplate, new Vector2(10, Random.Range(-4, 4)), Quaternion.identity));
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(5);
         }
        
     }

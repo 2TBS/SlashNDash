@@ -137,7 +137,7 @@ namespace Noesis
 #endif
                 _textureCamera.transparencySortMode = TransparencySortMode.Orthographic;
                 _textureCamera.clearStencilAfterLightingPass = false;
-                _textureCamera.hdr = false;
+				_textureCamera.allowHDR = false;
                 _textureCamera.useOcclusionCulling = false;
                 _textureCamera.cullingMask = 0;
                 _textureCamera.targetTexture = _texture;
